@@ -127,7 +127,7 @@
     hasAnyColConflicts: function() {
       var countConflicts = 0;
       var board = this.attributes;
-      var boardLength = this.attributes.n;
+      var boardLength = this.attributes.n; //this.get('n'); can be used because we have Backbone.js
 
       for (var i = 0; i < boardLength; i++) {
         if (this.hasColConflictAt(i)) {
