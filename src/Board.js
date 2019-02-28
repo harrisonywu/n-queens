@@ -70,12 +70,7 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      //pseudocode
-      //input is rowIndex
-      
-      //need board instance, this (it's an array of row arrays)
-      //output boolean
-      //this function checks if there is multiple 1's in the row mini array
+
       var boardRow = this.attributes[rowIndex];
       var rowLength = boardRow.length;
       var count = 0;
@@ -122,7 +117,7 @@
         }
       }
 
-      if (count > 0) {
+      if (count > 1) {
         return true;
       }
       return false;
