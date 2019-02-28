@@ -148,12 +148,48 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var count = 0;
+      var board = this.attributes;
+      var row = 0; //start at row 0, column index given as input
+      var column = majorDiagonalColumnIndexAtFirstRow;
+      var diagLength = this.get('n');
+
+      for (var i = 0; i < diagLength; i++) {
+        if (board[row + i][column + i] === 1) {
+          count++;
+        }
+      }
+   
+      
+      if (count > 1) { 
+        return true; 
+      }
+      return false; 
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      var countConflicts = 0;
+      var boardLength = this.get('n');
+      var negBoardLength = boardLength * (-1); //technically wrong to call arr[-1] but doesn't break function
+
+      for (var i = 0; i < boardLength; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          countConflicts++;
+        }
+      }
+
+      for (var k = 0; k > negBoardLength; k--) {
+        if (this.hasMajorDiagonalConflictAt(k)) {
+          countConflicts++;
+        }
+      }
+
+
+      if (countConflicts > 0) {
+        return true;
+      }
+      return false; 
     },
 
 
