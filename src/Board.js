@@ -114,14 +114,15 @@
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
       var count = 0;
-      //Pseudocode: Justification: loop thru first index of each row and check for conflicts, return true/false
-      //
-      //for loop through rows
-      //  grab colIndex of each row  
-      //  check if it is 1 or 0
-      //    increase counter
+      var rowLength = this.attributes.n;
+      for (var i = 0; i < rowLength; i++) {
+        var boardRow = this.attributes[i];
+        if (boardRow[colIndex] === 1) {
+          count++;
+        }
+      }
 
-      if ( count > 0) {
+      if (count > 0) {
         return true;
       }
       return false;
@@ -139,7 +140,7 @@
         }
       }
 
-      if ( countConflicts > 0) {
+      if (countConflicts > 0) {
         return true;
       }
       return false; 
