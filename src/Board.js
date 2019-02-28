@@ -64,7 +64,7 @@
     /*=========================================================================
     =                 TODO: fill in these Helper Functions                    =
     =========================================================================*/
-
+    
     // ROWS - run from left to right
     // --------------------------------------------------------------
     //
@@ -72,15 +72,15 @@
     hasRowConflictAt: function(rowIndex) {
       //pseudocode
       //input is rowIndex
+      
       //need board instance, this (it's an array of row arrays)
       //output boolean
       //this function checks if there is multiple 1's in the row mini array
-      var boardrow = this;
-      var rowlength = boardrow.length;
+      var boardRow = this.attributes[rowIndex];
+      var rowLength = boardRow.length;
       var count = 0;
-      debugger;
-      for (var i = 0; i < rowlength; i++) {
-        if (boardrow[i] === 1) {
+      for (var i = 0; i < rowLength; i++) {
+        if (boardRow[i] === 1) {
           count++;
         }
       }
@@ -88,16 +88,14 @@
         return true;
       }
       return false; 
-    },
-
+    }, 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       var countConflicts = 0;
-      var boardLength = this.length;
-      debugger;
+      var boardLength = this.attributes.n;
       for (var i = 0; i < boardLength; i++) {
-        var rowResults = hasRowConflictAt(this[i]);
-        if (rowReults === true) {
+        var rowResults = this.hasRowConflictAt(i);
+        if (rowResults === true) {
           countConflicts++;
         }
       }
@@ -105,7 +103,7 @@
       if ( countConflicts > 0) {
         return true;
       }
-      return false; // fixme
+      return false;
     },
 
 
