@@ -1,11 +1,3 @@
-/*           _
-   ___  ___ | |_   _____ _ __ ___
-  / __|/ _ \| \ \ / / _ \ '__/ __|
-  \__ \ (_) | |\ V /  __/ |  \__ \
-  |___/\___/|_| \_/ \___|_|  |___/
-
-*/
-
 // hint: you'll need to do a full-search of all possible arrangements of pieces!
 // (There are also optimizations that will allow you to skip a lot of the dead search space)
 // take a look at solversSpec.js to see what the tests are expecting
@@ -16,7 +8,19 @@
 
 
 window.findNRooksSolution = function(n) {
-  var solution = undefined; //fixme
+  var solution = undefined; 
+
+  // input n for the nxn board size, and n number of rook pieces
+  // output solution is a matrix that is an object with row arrays, board[0][0]
+  // constraints, edge cases; only need one possible arrangement of rooks
+  // Justification/Explanation: we want to return a possible board state where the rooks don't threaten each other
+  //
+  // Pseudocode
+  // first build an empty nxn board (see Board.js), all 0s, pseudoclassical. This empty board s is solution. 
+  // iterate through each row in order to cover the board. One rook piece per one row is assigned.
+  //    at every position in this row, check if there are conflicts (only row and col conflicts)
+  //    if either conflict true, do nothing
+  //    if conflict is false, reassign position square from 0 to 1
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
