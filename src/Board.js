@@ -61,15 +61,6 @@
       );
     },
 
-
-/*
-         _             _     _
-     ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
-    / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
-    \__ \ || (_| | |  | |_  | | | |  __/ | |  __/_
-    |___/\__\__,_|_|   \__| |_| |_|\___|_|  \___(_)
-
- */
     /*=========================================================================
     =                 TODO: fill in these Helper Functions                    =
     =========================================================================*/
@@ -79,11 +70,41 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      //pseudocode
+      //input is rowIndex
+      //need board instance, this (it's an array of row arrays)
+      //output boolean
+      //this function checks if there is multiple 1's in the row mini array
+      var boardrow = this;
+      var rowlength = boardrow.length;
+      var count = 0;
+      debugger;
+      for (var i = 0; i < rowlength; i++) {
+        if (boardrow[i] === 1) {
+          count++;
+        }
+      }
+      if (count > 1) {
+        return true;
+      }
+      return false; 
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+      var countConflicts = 0;
+      var boardLength = this.length;
+      debugger;
+      for (var i = 0; i < boardLength; i++) {
+        var rowResults = hasRowConflictAt(this[i]);
+        if (rowReults === true) {
+          countConflicts++;
+        }
+      }
+
+      if ( countConflicts > 0) {
+        return true;
+      }
       return false; // fixme
     },
 
