@@ -6,16 +6,13 @@
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
 window.findNRooksSolution = function(n) {
-  var solution = new Board({n:n});
-  var boardLength = n; //board.get('n');
-  //board.attributes[0][0] = board.set('1');
+  var solutionBoard = new Board({n:n});
+  var boardLength = n;
   var addSafeRook = function(c) {
     var bigArray = this;
-    solution.togglePiece(r, c);
-    debugger;
-    if ( solution.hasRowConflictAt(c) || solution.hasColConflictAt(c) ) {
-      debugger;
-      solution.togglePiece(r, c);
+    solutionBoard.togglePiece(r, c);
+    if ( solutionBoard.hasRowConflictAt(c) || solutionBoard.hasColConflictAt(c) ) {
+      solutionBoard.togglePiece(r, c);
       if (c < boardLength) {
         addSafeRook( c + 1 );
       }
@@ -32,13 +29,19 @@ window.findNRooksSolution = function(n) {
 };
   
   for (var r = 0; r < boardLength; r++) {
-    var boardRow = solution.attributes[r];  
-    addSafeRook.call(solution.attributes,r);
+    var boardRow = solutionBoard.attributes[r];  
+    addSafeRook.call(solutionBoard.attributes,r);
   }
   
+  console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solutionBoard));
   
-  console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
-  return solution; // assign solution to board
+  //Convert {'0':[], '1':[], ... 'n':4} to [[],[],...]
+  debugger;
+  var solutionBoardArray = [];
+  for (var ii = 0; ii < n; ii++) {
+    solutionBoardArray.push(solutionBoard.attributes[ii]);
+  }
+  return solutionBoardArray; // assign solution to board
 };
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
