@@ -8,13 +8,13 @@
 window.findNRooksSolution = function(n) {
   var solutionBoard = new Board({n:n});
   var boardLength = n;
-  var addSafeRook = function(c) {
+  var addSafeRook = function(r,c) {
     var bigArray = this;
     solutionBoard.togglePiece(r, c);
     if ( solutionBoard.hasRowConflictAt(c) || solutionBoard.hasColConflictAt(c) ) {
       solutionBoard.togglePiece(r, c);
       if (c < boardLength) {
-        addSafeRook( c + 1 );
+        addSafeRook( r, c + 1 );
       }
       else {
         console.log('no solutions, go back up the tree');
@@ -30,7 +30,7 @@ window.findNRooksSolution = function(n) {
   
   for (var r = 0; r < boardLength; r++) {
     var boardRow = solutionBoard.attributes[r];  
-    addSafeRook.call(solutionBoard.attributes,r);
+    addSafeRook.call(solutionBoard.attributes, r, 0);
   }
   
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solutionBoard));
@@ -50,31 +50,38 @@ console.log('///////////////////////////////////////////////////////////////////
   var solutionBoard = new Board({n:n});
   var boardLength = n;
 
-
+debugger;
   var addSafeRook = function(r, c) {
 
     var bigArray = this;
     solutionBoard.togglePiece(r, c);
-
-    if ( solutionBoard.hasRowConflictAt(c) || solutionBoard.hasColConflictAt(c) ) {
-      solutionBoard.togglePiece(r, c);
-      if (c < boardLength) {
-        addSafeRook( r, c + 1 );
-      } else {
-        console.log('no solutions, go back up the tree');
-        return;
-      }
-    } else {
-      console.log('row: ' + r + ', Set a safe rook at position ' + r + ',' + c);
-      //one row's rook was added and confirmed as safe
-      if (r + 1 === n) {
-        solutionCount++;
-        //n safe rooks were added
-      }
-      return;
-    }
   };
+
+
   
+  /////////////////////////////for reference only, branches are discareded //////////////////////////////////
+  //   if ( solutionBoard.hasRowConflictAt(c) || solutionBoard.hasColConflictAt(c) ) {
+  //     solutionBoard.togglePiece(r, c);
+  //     if (c < boardLength) {
+  //       addSafeRook( r, c + 1 );
+  //     } else {
+  //       console.log('no solutions, go back up the tree');
+  //       return;
+  //     }
+  //   } else {
+  //     console.log('row: ' + r + ', Set a safe rook at position ' + r + ',' + c);
+  //     //one row's rook was added and confirmed as safe
+  //     if (r + 1 === n) { // we've went through all the rows
+  //       solutionCount++;
+  //       //n safe rooks were added
+  //     }
+  //     return;
+  //   }
+  // };
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
   for (var r = 0; r < boardLength; r++) {
     var boardRow = solutionBoard.attributes[r];  
     addSafeRook.call(solutionBoard.attributes, r, 0);
