@@ -36,10 +36,9 @@ window.findNRooksSolution = function(n) {
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solutionBoard));
   
   //Convert {'0':[], '1':[], ... 'n':4} to [[],[],...]
-  debugger;
   var solutionBoardArray = [];
   for (var ii = 0; ii < n; ii++) {
-    solutionBoardArray.push(solutionBoard.attributes[ii]);
+    solutionBoardArray.push(solutionBoard.get(ii)); //board.get(ii) is the same as board.attributes[ii]
   }
   return solutionBoardArray; // assign solution to board
 };
