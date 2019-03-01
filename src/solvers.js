@@ -57,8 +57,16 @@ debugger;
     solutionBoard.togglePiece(r, c);
   };
 
+  //  base case: number of rooks === number of n
+  //  recursive case: 
+  // 
+  //  once we hit the bottom
+  //  if there are no conflicts
+  //    add to our solutionCount
+  //  call our addSafeRook with inputs r,c+1
+  // 
 
-  
+
   /////////////////////////////for reference only, branches are discareded //////////////////////////////////
   //   if ( solutionBoard.hasRowConflictAt(c) || solutionBoard.hasColConflictAt(c) ) {
   //     solutionBoard.togglePiece(r, c);
